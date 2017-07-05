@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenbuer.dao.BlogDao">
+
+	<resultMap type="com.chenbuer.entity.Blog" id="BlogResult">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="summary" column="summary"/>
+		<result property="releaseDate" column="releaseDate"/>
+		<result property="clickHit" column="clickHit"/>
+		<result property="replyHit" column="replyHit"/>
+		<result property="content" column="content"/>
+		<result property="keyWord" column="keyWord"/>
+
+		<association property="blogType" column="typeId" select="com.chenbuer.dao.BlogTypeDao.findById"></association>
+	</resultMap>
+	
+	
+	<select id="countList" resultMap="BlogResult">
+		SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr,COUNT(*) AS blogCount  FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY  DATE_FORMAT(releaseDate,'%Y年%m月') DESC;
+	</select>
+	
+	<select id="listBlogWithPage" parameterType="Map" resultMap="BlogResult">
+		SELECT * FROM t_blog
+		<where>
+			<if test="typeId!=null">
+				typeId=#{typeId}
+			</if>
+			<if test="releaseDateStr!=null">
+				AND DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+			</if>
+			<if test="title!=null">
+				AND title like #{title}
+			</if>
+		</where>
+		<if test="start!=null and pageSize!=null">
+			LIMIT #{start},#{pageSize}
+		</if>
+	</select>
+
+	<select id="getBlogsByTypeName" parameterType="String" resultMap="BlogResult">
+		SELECT * FROM t_blog,t_blogtype WHERE t_blog.typeId=t_blogtype.id AND t_blogtype.typeName=#{typeName}
+	</select>
+	
+	<select id="getBlogCount" resultType="int">
+		SELECT COUNT(*) FROM t_blog
+		<where>
+			<if test="typeId!=null">
+				typeId=#{typeId}
+			</if>
+			<if test="releaseDateStr!=null">
+				AND DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+			</if>
+			<if test="title!=null">
+				AND title like #{title}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="save" parameterType="com.chenbuer.entity.Blog">
+		INSERT INTO t_blog(title,summary,content,keyWord,typeId,releaseDate) 
+		VALUES(#{title},#{summary},#{content},#{keyWord},#{typeId},NOW());
+	</insert>
+	
+	<insert id="delete" parameterType="Integer">
+		DELETE FROM t_blog WHERE id=#{id}
+	</insert>
+	
+	<select id="findById" parameterType="Integer" resultMap="BlogResult">
+		SELECT * FROM t_blog WHERE id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.chenbuer.entity.Blog">
+		update t_blog 
+		<set>
+			<if test="title!=null">
+				title=#{title},
+			</if>
+			<if test="summary!=null">
+				summary=#{summary},
+			</if>
+			<if test="clickHit!=null">
+				clickHit=#{clickHit},
+			</if>
+			<if test="replyHit!=null">
+				replyHit = #{replyHit},
+			</if>
+			<if test="content!=null">
+				content = #{content},
+			</if>
+			<if test="keyWord!=null">
+				keyWord = #{keyWord},
+			</if>
+			<if test="typeId!=null">
+				typeId = #{typeId},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	
+	
+</mapper> 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenbuer.dao.LinkDao">
+
+	<resultMap type="com.chenbuer.entity.Link" id="LinkResult">
+		<result property="id" column="id"/>
+		<result property="linkName" column="LinkName"/>
+		<result property="linkUrl" column="linkUrl"/>
+		<result property="nickName" column="linkNo"/>
+	</resultMap>
+	
+	<select id="list" resultType="com.chenbuer.entity.Link">
+		SELECT * FROM t_link ORDER BY linkNo ASC;
+	</select>
+</mapper> 
