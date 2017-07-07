@@ -16,7 +16,19 @@ public class User implements Serializable{
 	private String sign;
 	private String imageName;
 
-	
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", userName='" + userName + '\'' +
+				", password='" + password + '\'' +
+				", profile='" + profile + '\'' +
+				", nickName='" + nickName + '\'' +
+				", sign='" + sign + '\'' +
+				", imageName='" + imageName + '\'' +
+				'}';
+	}
+
 	public int getId() {
 		return id;
 	}

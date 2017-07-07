@@ -6,7 +6,7 @@ public interface UserService {
 
 
 	/**
-	 * 通过用户名获取用户
+	 * 通过用户名获取用户信息
 	 * @param userName
 	 * @return
 	 */

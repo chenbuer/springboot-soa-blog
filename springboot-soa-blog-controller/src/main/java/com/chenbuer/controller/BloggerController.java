@@ -47,7 +47,9 @@ public class BloggerController {
         ResultRespone resultRespone=new ResultRespone();
 
         User userWithRealInfo = userService.getUserByUserName(user.getUserName());
-        if(userWithRealInfo.getPassword().equals(CryptographyUtil.md5(user.getPassword(),"chenbuer"))){
+//        System.out.println(userWithRealInfo);
+//        System.out.println(user);
+        if(userWithRealInfo!=null && userWithRealInfo.getPassword().equals(CryptographyUtil.md5(user.getPassword(),"chenbuer"))){
             resultRespone.setRetCode(0);
             resultRespone.setRetMsg("SUCCESS");
             resultRespone.setResult(userWithRealInfo);
