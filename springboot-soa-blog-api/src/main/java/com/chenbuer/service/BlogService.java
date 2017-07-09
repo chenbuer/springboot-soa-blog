@@ -28,7 +28,7 @@ public interface BlogService {
 	int getBlogCount(Map map);
 	
 	/**
-	 * ��Ӳ���
+	 * 保存博客
 	 * @param blog
 	 */
 	void save(Blog blog);

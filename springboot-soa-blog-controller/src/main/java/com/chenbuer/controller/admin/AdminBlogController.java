@@ -1,11 +1,13 @@
 package com.chenbuer.controller.admin;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.registry.RegistryService;
 import com.chenbuer.config.FinalParam;
 import com.chenbuer.entity.*;
 import com.chenbuer.service.BlogService;
 import com.chenbuer.util.PageUtil;
 import com.chenbuer.util.StringUtil;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +90,18 @@ public class AdminBlogController {
         resultRespone.setResult(0);
         resultRespone.setRetMsg("SUCCESS");
 
+        return resultRespone;
+    }
+
+    @RequestMapping("/admin/addBlog")
+    public ResultRespone addBlog(@RequestBody Blog blog){
+        System.out.println("--------------");
+        System.out.println(blog);
+        System.out.println("--------------");
+        ResultRespone resultRespone=new ResultRespone();
+        blogService.save(blog);
+        resultRespone.setRetCode(0);
+        resultRespone.setRetMsg("SUCCESS");
         return resultRespone;
     }
 

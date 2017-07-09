@@ -21,4 +21,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="find" resultType="com.chenbuer.entity.User">
 		select * from t_user where id=1;
 	</select>
+
+
+	<update id="updateUser" parameterType="com.chenbuer.entity.User">
+		update t_user
+		<set>
+			<if test="nickName!=null">
+				nickName=#{nickName},
+			</if>
+			<if test="sign!=null">
+				sign=#{sign},
+			</if>
+			<if test="profile!=null">
+				profile=#{profile},
+			</if>
+		</set>
+		where userName=#{userName}
+	</update>
 </mapper> 

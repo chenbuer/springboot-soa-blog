@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ����ʵ����
+ * blog实体类
  * @author czy
  *
  */
@@ -26,8 +26,24 @@ public class Blog implements Serializable{
 	public Blog() {
 	}
 
+	@Override
+	public String toString() {
+		return "Blog{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", summary='" + summary + '\'' +
+				", releaseDate=" + releaseDate +
+				", clickHit=" + clickHit +
+				", replyHit=" + replyHit +
+				", content='" + content + '\'' +
+				", keyWord='" + keyWord + '\'' +
+				", blogType=" + blogType +
+				", typeId=" + typeId +
+				", releaseDateStr='" + releaseDateStr + '\'' +
+				", blogCount=" + blogCount +
+				'}';
+	}
 
-	
 	public Integer getId() {
 		return id;
 	}
