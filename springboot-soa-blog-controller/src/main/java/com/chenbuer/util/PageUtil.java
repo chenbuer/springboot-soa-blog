@@ -1,6 +1,7 @@
 package com.chenbuer.util;
 
 import com.chenbuer.entity.PageInfo;
+import com.chenbuer.entity.ResultResponeForVueTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,8 @@ public class PageUtil {
 
 	public static PageInfo getPageInfo(long totalNum, // 总记录数
 									   int currentPage, // 当前页
-									   int pageSize){// 每页显示记录数
+									   int pageSize,// 每页显示记录数
+									   ResultResponeForVueTable resultResponeForVueTable){//VueTable的返回值中需要很多关于pageInfo的参数，专门设置的
 
 		PageInfo pageInfo=new PageInfo();
 		//是否需要显示”上一页“标签
@@ -30,8 +32,13 @@ public class PageUtil {
 			pageInfo.setListPages(listPage);
 		}
 
+		if(resultResponeForVueTable!=null){
+			resultResponeForVueTable.setFrom((currentPage-1)*pageSize+1);
+			resultResponeForVueTable.setTo(currentPage*pageSize);
+			resultResponeForVueTable.setLast_page((int) totalPage);
+
+		}
 		return pageInfo;
 	}
-
 
 }

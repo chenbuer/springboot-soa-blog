@@ -73,7 +73,7 @@ public class BlogController {
             pageMap.put("releaseDateStr", releaseDateStr);
         }
 
-        PageInfo pageInfo=PageUtil.getPageInfo(blogService.getBlogCount(pageMap),Integer.parseInt(page),FinalParam.ONE_PAGE_SIZE);
+        PageInfo pageInfo=PageUtil.getPageInfo(blogService.getBlogCount(pageMap),Integer.parseInt(page),FinalParam.ONE_PAGE_SIZE,null);
         model.addAttribute("pageInfo", pageInfo);
         resultRespone.setRetCode(0);
         resultRespone.setResult(model);
