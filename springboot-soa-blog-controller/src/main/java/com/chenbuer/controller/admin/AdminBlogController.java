@@ -70,14 +70,13 @@ public class AdminBlogController {
         }
 
         PageInfo pageInfo=PageUtil.getPageInfo(blogService.getBlogCount(pageMap),Integer.parseInt(page),perPage,resultResponeForVueTable);
+
+        //给vueTable返回的其他信息的完善
         resultResponeForVueTable.setCurrent_page(Integer.parseInt(page));
         resultResponeForVueTable.setNext_page_url(null);
         resultResponeForVueTable.setPrev_page_url(null);
-
+        resultResponeForVueTable.setPer_page(perPage);
         resultResponeForVueTable.setCurrent_page(pageInfo.getCurPage());
-        resultResponeForVueTable.setFrom(perPage*(pageInfo.getCurPage()-1)-1);
-        resultResponeForVueTable.setTo(perPage*pageInfo.getCurPage());
-//        resultResponeForVueTable.setLast_page(pageInfo.get);
 
         return resultResponeForVueTable;
     }

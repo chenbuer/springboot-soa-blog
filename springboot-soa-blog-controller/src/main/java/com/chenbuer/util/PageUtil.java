@@ -33,10 +33,10 @@ public class PageUtil {
 		}
 
 		if(resultResponeForVueTable!=null){
-			resultResponeForVueTable.setFrom((currentPage-1)*pageSize+1);
+			resultResponeForVueTable.setFrom(1+((currentPage-1)*pageSize)	);
 			resultResponeForVueTable.setTo(currentPage*pageSize);
 			resultResponeForVueTable.setLast_page((int) totalPage);
-
+			resultResponeForVueTable.setTotal((int) totalPage);
 		}
 		return pageInfo;
 	}
