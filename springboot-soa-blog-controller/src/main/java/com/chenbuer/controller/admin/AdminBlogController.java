@@ -93,17 +93,30 @@ public class AdminBlogController {
         return resultRespone;
     }
 
-    @RequestMapping("/admin/addBlog")
-    public ResultRespone addBlog(@RequestBody Blog blog){
-        System.out.println("--------------");
-        System.out.println(blog);
-        System.out.println("--------------");
+    @RequestMapping("/admin/save")
+    public ResultRespone save(@RequestBody Blog blog) throws Exception{
         ResultRespone resultRespone=new ResultRespone();
-        blogService.save(blog);
-        resultRespone.setRetCode(0);
-        resultRespone.setRetMsg("SUCCESS");
+        try {
+            if(blog.getId()==null){
+                //要是没有携带ID就是新增
+                blogService.save(blog);
+                resultRespone.setRetMsg("新增成功");
+            }else{
+                //要是携带了ID就是修改
+                blogService.update(blog);
+                resultRespone.setRetMsg("修改成功");
+            }
+            resultRespone.setRetCode(0);
+        } catch (Exception e) {
+            resultRespone.setRetCode(-1);
+            if (blog.getId()==null){
+                resultRespone.setRetMsg("新增失败");
+            }else{
+                resultRespone.setRetMsg("修改失败");
+            }
+        }
+
         return resultRespone;
     }
-
 
 }

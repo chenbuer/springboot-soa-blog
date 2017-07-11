@@ -13,12 +13,12 @@ public class AdminAboutMeController {
 
     @RequestMapping("/admin/updateAboutMe")
     public ResultRespone updateAboutMe(@RequestBody User user){
-    ResultRespone resultRespone=new ResultRespone();
-    userService.updateUser(user);
-    resultRespone.setRetCode(0);
-    resultRespone.setRetMsg("SUCCESS");
-    return resultRespone;
-}
+        ResultRespone resultRespone=new ResultRespone();
+        userService.updateUser(user);//也不是可以更新所有字段，而是按照前端，就让更新三个字段
+        resultRespone.setRetCode(0);
+        resultRespone.setRetMsg("SUCCESS");
+        return resultRespone;
+    }
 
 
 }
