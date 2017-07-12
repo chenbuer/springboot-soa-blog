@@ -13,7 +13,17 @@ public class BlogType implements Serializable{
 	private int orderNo;
 
 	private int blogCount;//���type���ж��ٸ�������������ݿ��е��ֶΣ������Լ�ͳ�Ƶġ�
-	
+
+	@Override
+	public String toString() {
+		return "BlogType{" +
+				"id=" + id +
+				", typeName='" + typeName + '\'' +
+				", orderNo=" + orderNo +
+				", blogCount=" + blogCount +
+				'}';
+	}
+
 	public int getBlogCount() {
 		return blogCount;
 	}
