@@ -5,7 +5,7 @@
 
 docker run --name zookeeper -dti -p 2181:2181 zookeeper:latest
 
-- mysql的镜像直接从daocloud上下载的
+- mysql的镜像直接从官网上下载的：（daocloud没有的5.6版本的mysql）
 
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d -p 3306:3306 docker.io/mysql:5.6.35
 
