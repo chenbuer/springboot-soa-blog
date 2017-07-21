@@ -19,4 +19,4 @@ docker run --name controller -dit -p 8080:8080 controller:latest
 
 - view
 
-docker run --name view -dit -p 80:80 view:latest
+docker run --name view -dit -p 80:80 -v /home/czy/view/dist:/data view:latest
