@@ -1,5 +1,5 @@
 FROM index.alauda.cn/tutum/centos
-MAINTAINER chenbuer <chenzy@126.com>
+MAINTAINER chenbuer <chenzy08@126.com>
 EXPOSE 80
 RUN mkdir -p /home/zookeeper && mkdir -p /usr/zookeeper/
 
